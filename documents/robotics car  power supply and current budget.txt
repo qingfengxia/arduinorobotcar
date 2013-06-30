@@ -1,0 +1,79 @@
+﻿robot car  power supply and current budget
+
+================== system component===================
+
+Arduino mega 2560  INput   7-12V  
+L298N  motor controller:  Quiet current is 70mA at 7V for two L298N controller with DCMotor
+    
+Torobot USB 32 servo controller:  
+HC05 bluetooth controller: 3.3 or 5V
+SR04 ultrasound range sensor:  5V:  
+IR sensor, self made! + IR remote control to 
+
+Raspberry PI:  5V only by mini USB input port,   700mA  at 5V 
+USB hub? 
+
+
+
+----------------grounding---------------------
+Ground ,  rear power input jack 3.5mm, if power input is plugin, 
+all the car body is connected to ground
+
+================ATmega2560====================
+Microcontroller	
+Operating Voltage	5V
+Input Voltage (recommended)	7-12V
+Input Voltage (limits)	6-20V
+Digital I/O Pins	54 (of which 15 provide PWM output)
+Analog Input Pins	16
+DC Current per I/O Pin	40 mA
+DC Current for 3.3V Pin	50 mA
+Flash Memory	256 KB of which 8 KB used by bootloader
+SRAM	8 KB
+EEPROM	4 KB
+Clock Speed	16 MHz
+
+
+==================L298N：====================
+stepper is expensive,  L298N can control it!
+
+工作电压高，驱动电压 5V-35V,  最高工作电压可达46V；
+ 输出电流大，瞬间峰值电流可达3A，持续工作电流为2A；
+额定功率25W
+
+
+本模块集成了一个内置的5V供电。当你的驱动电压为7V-35V的时候，可以使能板载的5V逻辑供电，(using jumper)
+当使用板载5V供电之后，接口中的+5V供电不要输入电压，但是可以引出5V电压供外部使用  raspberry pi, but it is not safe, voltage may fluctuating
+当ENA 使能 IN1 IN2 控制 OUT1 OUT2 
+当ENB 使能 IN3 IN4 控制 OUT3 OUT4
+
+================servo========================
+Torobot  USB 32 servo controller:
+
+VS (input voltage  6.5-12V)  GND   VSS(5V input ) 
+Bluetooth controll module, 5 pins,  
+Android control software,  10RMB,  
+USB control software is free
+ 
+
+6.5V~12V或者4.5V~5.5V。（为什么会有两个范围？因为有两个输入端）（USB可以给舵机控制板的芯片供电，自动选择，带USB反向保护，可以保护你的电脑不被反向USB电压烧坏）
+
+
+
+======================================
+======================================
+
+Power supply:   7V   without motor move,   
+the current drawn by motor controllers and Arduino is  0.14A, 
+
+
+latop power 20V
+==================debug==================
+(1) Thandar TS3021S to monitoring the current,
+Due to the current limitation function, the motor does not move, but emit "da da da" noise, 
+it means the current limit is set too low,  increase to maximum , it works!
+
+(2) Turn left and turn right  need to be tested, there is no fixed positive port for motor and controller.
+    Swapping the pin, the motor will run in reverse way!
+
+(3)
